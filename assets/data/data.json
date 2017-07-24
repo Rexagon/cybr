@@ -1,0 +1,24 @@
+{
+	"audio": {
+		"music_1": "John_Carpenter_Purgatory.ogg",
+		"music_2": "Auditive_Escape_Propeller.ogg"
+	},
+	"fonts": {
+		"font_default": "default.ttf"
+	},
+	"scripts": {
+		"script_game": 	"game.lua"
+	},
+	"shaders": {
+		"shader_blur": 	"blur.frag"
+	},
+	"textures": {
+		"main_logo": "main_logo.png",
+		"menu_background": "menu_background.png",
+
+		"background_city_1": 	"background_city_1.png",
+		"background_coridor_1": "background_coridor_1.png",
+		"background_room_1": 	"background_room_1.png",
+		"background_street_1": 	"background_street_1.png"
+	}
+}
