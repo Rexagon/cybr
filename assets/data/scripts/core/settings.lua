@@ -44,6 +44,10 @@ function Settings.MenuFunction(data)
     
     coroutine.yield()
 
+    if Engine.IsMenuOpened() == false then
+        return
+    end
+
     arguments.menu.currentChoiceIndex = Engine.GetSelectedItem()
          
     content = arguments.menu:getCurrentChoiceAction()(arguments.scene)
@@ -71,6 +75,6 @@ function Settings.MenuFunction(data)
     Core.Update()
 end
 
-Settings.Handlers.Menu = coroutine.create(Settings.MenuFunction)
+Settings.Handlers.Menu = nil
 
 return Settings

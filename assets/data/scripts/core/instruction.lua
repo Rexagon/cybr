@@ -169,9 +169,15 @@ Implementations["no-op"] = Instruction:new {
 Implementations["show-menu"] = Instruction:new {
     name = "show-menu",
     action = function (arguments)
+        if Core.Settings.Handlers.Menu ~= nil and
+            coroutine.status(Core.Settings.Handlers.Menu) == "suspended"
+        then
+            coroutine.resume(Core.Settings.Handlers.Menu)
+        end
+
         if Core.Settings.Handlers.Menu == nil or
-            coroutine.status(Core.Settings.Handlers.Menu) == "dead" or
-            coroutine.status(Core.Settings.Handlers.Menu) == "suspended" then
+            coroutine.status(Core.Settings.Handlers.Menu) == "dead"
+        then
             Core.Settings.Handlers.Menu = coroutine.create(
                 Core.Settings.MenuFunction
             )
@@ -197,19 +203,19 @@ Implementations["execute"] = Instruction:new {
 }
 
 Instruction.ForOpcode = {
-    ["say"] = Implementations["say"],
-    ["think"] = Implementations["say"],
-    ["set-character-image"] = Implementations["set-image"],
-    ["set-character-name"] = Implementations["set-name"],
-    ["change-scene"] = Implementations["set-scene"],
-    ["set-scene-image"] = Implementations["set-image"],
-    ["no-op"] = Implementations["no-op"],
+    ["say"]                  = Implementations["say"],
+    ["think"]                = Implementations["say"],
+    ["set-character-image"]  = Implementations["set-image"],
+    ["set-character-name"]   = Implementations["set-name"],
+    ["change-scene"]         = Implementations["set-scene"],
+    ["set-scene-image"]      = Implementations["set-image"],
+    ["no-op"]                = Implementations["no-op"],
     ["deactivate-character"] = Implementations["no-op"],
-    ["move-character"] = Implementations["set-position"],
-    ["add-menu"] = Implementations["show-menu"],
-    ["export-variable"] = Implementations["set-data"],
-    ["import-variable"] = Implementations["get-data"],
-    ["execute"] = Implementations["execute"]
+    ["move-character"]       = Implementations["set-position"],
+    ["add-menu"]             = Implementations["show-menu"],
+    ["export-variable"]      = Implementations["set-data"],
+    ["import-variable"]      = Implementations["get-data"],
+    ["execute"]              = Implementations["execute"]
 }
 
 

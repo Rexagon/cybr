@@ -64,7 +64,7 @@ function Menu:new(properties)
 
         if type(value[2]) == "string" then
             action = function (scene)
-                return Core.Opcode:new("change-scene", value[2])
+                return Core.Opcode:new("change-scene", {target=value[2]})
             end
         else
             action = value[2]
