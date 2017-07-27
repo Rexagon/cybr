@@ -61,7 +61,9 @@ void Widget::setLayout(Layout * layout)
 {
 	delete m_layout;
 	m_layout = layout;
-	m_layout->m_parent = this;
+    if (m_layout != nullptr) {
+        m_layout->m_parent = this;
+    }
 }
 
 Layout * Widget::getLayout() const

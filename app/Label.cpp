@@ -4,7 +4,7 @@
 #include "GUI.h"
 
 #ifdef __linux__
-#define LOCALE "ru_RU.utf-8"
+#define LOCALE "ru_RU.CP1251"
 #elif
 #define LOCALE "Russian"
 #endif

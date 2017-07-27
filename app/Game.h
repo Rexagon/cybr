@@ -35,8 +35,9 @@ private:
 
     void showMenu();
     void closeMenu();
+    bool isMenuOpened() const;
     void addMenuItem(const std::string& label);
-    int getSelectedItem();
+    int getSelectedItem() const;
 
     std::shared_ptr<Widget> m_menuWidget;
     Layout* m_menuLayout;

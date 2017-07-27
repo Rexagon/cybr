@@ -285,6 +285,9 @@ void Game::loadScript()
     ScriptManager::get("Engine")["GetSelectedItem"] = [this]() {
         return this->getSelectedItem();
     };
+    ScriptManager::get("Engine")["IsMenuOpened"] = [this]() {
+        return this->isMenuOpened();
+    };
 
 	ScriptManager::evaluate(*AssetManager::get<std::string>("script_game"));
 
@@ -343,6 +346,7 @@ void Game::closeMenu()
     for (auto& item : m_menuItems) {
         m_gui.prepareDeleting(item);
     }
+    m_menuItems.clear();
     m_menuLayout = new Layout(m_menuWidget);
     m_selectedItem = 0;
 
@@ -351,6 +355,11 @@ void Game::closeMenu()
     m_labelName->setVisible(true);
     m_labelText->setVisible(true);
     m_guiState = 0;
+}
+
+bool Game::isMenuOpened() const
+{
+    return m_guiState == 4;
 }
 
 void Game::addMenuItem(const std::string& label)
@@ -379,7 +388,7 @@ void Game::addMenuItem(const std::string& label)
     m_menuItems.push_back(menuItem.get());
 }
 
-int Game::getSelectedItem()
+int Game::getSelectedItem() const
 {
     return m_selectedItem;
 }
